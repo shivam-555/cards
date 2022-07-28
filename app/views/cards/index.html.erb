@@ -1,0 +1,73 @@
+<div class="container">
+	<br>
+	<%= form_tag import_cards_path, multipart: true, class: 'form-inline' do %>
+		<div class="form-group">
+			<%= link_to "Export CSV", cards_path(format: :csv), class: 'btn btn-outline-primary' %>
+		</div>
+
+		<div class="form-group ml-3">
+			<%= file_field_tag :file, class: 'btn btn-outline-warning btn-sm mr-3' %>
+		</div>
+
+		<div class="form-group">
+			<%= submit_tag "Import CSV", class: 'btn btn-outline-info' %>
+		</div>
+  <% end %>
+  <p id="notice"><%= notice %></p>
+  <h1>Cards Details</h1>
+	<br><br>
+	<%= line_chart Card.group(:card_type).count %>
+	<br><br>
+	<table id="cards-datatable" class="table" data-source="<%= cards_path(format: :json, 
+		card_type: params[:card_type]) %>">
+	  <thead>
+	    <tr>
+	      <th>Card Holder Name</th>
+	      <th>Card Number</th>
+	      <th>Cvv Number</th>
+	      <th>Valid From</th>
+	      <th>Valid Upto</th>
+	      <th>User Id</th>
+	      <th>Card Type</th>
+	      <th>Bank Name</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  </tbody>
+	</table>
+	<div>
+		<%= link_to 'New Card', new_card_path %> |
+		<%= link_to 'Back', root_path %>
+	</div>
+</div>
+
+<script>
+
+// users.js
+
+jQuery(document).ready(function() {
+  $('#cards-datatable').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#cards-datatable').data('source')
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "card_holder_name"},
+      {"data": "card_number"},
+      {"data": "cvv_number"},
+      {"data": "valid_from"},
+      {"data": "valid_upto"},
+      {"data": "user_id"},
+      {"data": "card_type"},
+      {"data": "bank_name"},
+
+    ]
+    // pagingType is optional, if you want full pagination controls.
+    // Check dataTables documentation to learn more about
+    // available options.
+  });
+});
+
+</script>

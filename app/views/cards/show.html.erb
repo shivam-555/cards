@@ -1,0 +1,47 @@
+<p>
+  <strong>Card Holder Name:</strong>
+  <%= @card.card_holder_name %>
+</p>
+<p>
+  <strong>Card Number:</strong>
+  <%= @card.card_number.to_s.gsub!(/\d(?=[0-9]{4})/, '*') %>
+</p>
+
+<p>
+  <strong>Cvv Number:</strong>
+ <%= @card.cvv_number.to_s.gsub(/\d(?=[0-3]{0})/, '*') %>
+</p>
+
+<p>
+  <strong>Valid From:</strong>
+  <%= @card.valid_from%>
+</p>
+
+<p>
+  <strong>Valid Upto:</strong>
+  <%= @card.valid_upto %>
+</p>
+
+<p>
+  <strong>User Id:</strong>
+  <%= @card.user_id %>
+</p>
+
+<p>
+  <strong>Card Type:</strong>
+  <%= @card.card_type %>
+</p>
+
+<p>
+  <strong>Bank Name:</strong>
+  <%= @card.bank_name %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %>
+<%= link_to 'Back', cards_path %>
+<%= link_to 'Delete', @card, method: :delete, data: { confirm: 'Are you sure'} %>
+
+
+
+
+

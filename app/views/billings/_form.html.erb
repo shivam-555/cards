@@ -1,0 +1,72 @@
+<%= form_with(model: billing) do |form| %>
+  <% if billing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(billing.errors.count, "error") %> prohibited this billing from being saved:</h2>
+
+      <ul>
+        <% billing.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :card_holder_name %>
+    <%= form.text_field :card_holder_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_number %>
+    <%= form.number_field :card_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cvv_number %>
+    <%= form.number_field :cvv_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valid_from %>
+    <%= form.date_select :valid_from %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valid_upto %>
+    <%= form.date_select :valid_upto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_id %>
+    <%= form.number_field :card_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_type %>
+    <%= form.text_field :card_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank_name %>
+    <%= form.text_field :bank_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_amount %>
+    <%= form.number_field :total_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paid_amount %>
+    <%= form.number_field :paid_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_amount %>
+    <%= form.number_field :due_amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

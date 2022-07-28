@@ -1,0 +1,22 @@
+<div class="container">
+
+  <br>
+  <h2>Card Type</h2>
+  <br>
+
+  <%= link_to "Debit Card", cards_path(card_type: 'debit'), class: "btn btn-outline-info btn-lg" %>
+
+  <br>
+  <br>
+  <br>
+  <h4>Debit  => <%= Card.where(:card_type => 'debit').count %></h4>
+  <br>
+  <br>
+  <%= link_to "Credit Card", cards_path(card_type: 'credit'), class: "btn btn-outline-warning btn-lg" %>
+
+  <br>
+  <br>
+  <br>
+  <h4>Credit  => <%= Card.where(:card_type => 'credit').count %></h4>
+  
+</div>
